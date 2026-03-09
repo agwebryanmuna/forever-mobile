@@ -5,9 +5,20 @@ import { Link } from "expo-router";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants";
+import { useWishlist } from "@/context/WishlistContext";
 
+/**
+ * Renders a tappable product card showing image, name, price, rating, and optional featured badge.
+ *
+ * The card is wrapped in a Link (making the card navigable) and includes a heart button that toggles
+ * the wishlist state for the product without triggering the card navigation.
+ *
+ * @param product - Product object to render; expected to include `_id`, `images` (first image used), `isFeatured`, `name`, and `price`.
+ * @returns A JSX element representing the product card.
+ */
 export default function ProductCard({ product }: ProductCardProps) {
-  const isLiked = false;
+  const {toggleWishlist, isInWishlist} = useWishlist()
+  const isLiked = isInWishlist(product._id);
 
   return (
     <Link className=" w-[48%]" href={`/`} asChild>
@@ -27,6 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-sm"
             onPress={(e) => {
               e.stopPropagation();
+              toggleWishlist(product);
             }}
           >
             <Ionicons
