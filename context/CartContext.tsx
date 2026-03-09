@@ -52,6 +52,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // clear cart
   const clearCart = async () => {
     setCartItems([]);
+    setCartTotal(0);
   };
 
   // calculate total items in cart
