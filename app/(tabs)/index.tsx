@@ -39,8 +39,6 @@ export default function Home() {
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <Header showMenu showCart showLogo />
-      <Text className="text-black">Home</Text>
-
       <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
         {/* Banner Slider */}
         <View className="mb-6">
@@ -82,7 +80,10 @@ export default function Home() {
                     {banner.subtitle}
                   </Text>
 
-                  <Pressable className="mt-2 bg-white px-4 py-2 rounded-full self-start">
+                  <Pressable
+                    onPress={() => router.push("/product/shop")}
+                    className="mt-2 bg-white px-4 py-2 rounded-full self-start"
+                  >
                     <Text className="text-primary font-bold text-xs">
                       Get Now
                     </Text>
@@ -96,7 +97,7 @@ export default function Home() {
             {BANNERS.map((_, index) => (
               <View
                 key={index}
-                className={`h-2 rounded-full bg-white   ${index === activeBannerIndex ? "w-6 bg-primary" : "w-2 bg-gray-300"}`}
+                className={`h-2 rounded-full ${index === activeBannerIndex ? "w-6 bg-primary" : "w-2 bg-gray-300"}`}
               />
             ))}
           </View>
@@ -148,10 +149,16 @@ export default function Home() {
 
         {/* Newsletter CTA */}
         <View className="bg-gray-100 p-6 rounded-2xl mb-20 items-center">
-          <Text className="text-2xl font-bold text-primary mb-2 text-center">Join the Revolution</Text>
-          <Text className="text-secondary text-center mb-4">Subscribe to our newsletter and get 10% off on your first purchase.</Text>
+          <Text className="text-2xl font-bold text-primary mb-2 text-center">
+            Join the Revolution
+          </Text>
+          <Text className="text-secondary text-center mb-4">
+            Subscribe to our newsletter and get 10% off on your first purchase.
+          </Text>
           <Pressable className="bg-primary w-4/5 py-3 rounded-full items-center">
-            <Text className="text-white text-base font-medium">Subscribe Now</Text>
+            <Text className="text-white text-base font-medium">
+              Subscribe Now
+            </Text>
           </Pressable>
         </View>
       </ScrollView>
