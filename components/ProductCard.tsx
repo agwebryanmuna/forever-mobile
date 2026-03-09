@@ -8,12 +8,11 @@ import { COLORS } from "@/constants";
 import { useWishlist } from "@/context/WishlistContext";
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const {toggleWishlist, isInWishlist} = useWishlist()
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const isLiked = isInWishlist(product._id);
 
   return (
-    <Link className=" w-[48%]" href={`/`} asChild>
-      {/* <Link href={`/product/${product._id}`} asChild> */}
+    <Link className=" w-[48%]" href={`/product/${product._id}`} asChild>
       <Pressable className="mb-4 bg-white rounded-lg overflow-hidden">
         <View className="relative bg-gray-100">
           <View className="h-[240px]">
@@ -55,9 +54,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Ionicons name="star" size={14} color="#FFD700" />
             <Text className="text-secondary text-xs ml-1">4.6</Text>
           </View>
-          <Text className="text-primary font-medium text-sm mb-1" numberOfLines={1}>{product.name}</Text>
+          <Text
+            className="text-primary font-medium text-sm mb-1"
+            numberOfLines={1}
+          >
+            {product.name}
+          </Text>
           <View>
-            <Text className="text-primary font-bold text-base">${product.price.toFixed(2)}</Text>
+            <Text className="text-primary font-bold text-base">
+              ${product.price.toFixed(2)}
+            </Text>
           </View>
         </View>
       </Pressable>
