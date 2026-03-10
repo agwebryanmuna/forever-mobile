@@ -4,8 +4,11 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 import { COLORS } from "@/constants";
+import { useCart } from "@/context/CartContext";
 
 export default function TabsLayout() {
+  const { cartItems } = useCart();
+
   return (
     <Tabs
       screenOptions={{
@@ -40,11 +43,19 @@ export default function TabsLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "cart" : "cart-outline"}
-              color={color}
-              size={26}
-            />
+            <View className="relative">
+              <Ionicons
+                name={focused ? "cart" : "cart-outline"}
+                color={color}
+                size={26}
+              />
+
+              {cartItems.length > 0 && (
+                <View className="absolute -top-2 -right-2 bg-accent size-3 rounded-full items-center justify-center">
+                  <Ionicons name="ellipse" size={6} color={"white"} />
+                </View>
+              )}
+            </View>
           ),
         }}
       />
